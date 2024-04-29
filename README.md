@@ -48,10 +48,11 @@ To make it simple, you can follow the steps below. For more information please r
 
 1. Open the AWS CloudFormation console at [CloudFormation Console](https://console.aws.amazon.com/cloudformation). Choose Create stack and then select With new resources (standard).
 
+![](https://res.cloudinary.com/dljvrtsnk/image/upload/v1714390143/xghwm2z0oqopyhdpczfv.png)
 2. Use the template ready option. Select the Amazon S3 Url as the template source and add the following file location URL in the Amazon S3 Url. Choose Next.
 
    [amazon-eks-nodegroup.yaml](https://s3.us-west-2.amazonaws.com/amazon-eks/cloudformation/2022-12-23/amazon-eks-nodegroup.yaml)
-
+![](https://res.cloudinary.com/dljvrtsnk/image/upload/v1714390176/azqnrdckq9rrtqcnx55z.png)
 3. On the Specify stack details page, enter the following parameters accordingly, and then choose Next:
 
    - Stack name: Enter ‘eks-cluster-stack’ for your AWS CloudFormation stack.
@@ -61,14 +62,10 @@ To make it simple, you can follow the steps below. For more information please r
    - ClusterControlPlaneSecurityGroup: Choose the security group of the cluster control plane.
 
    - NodeGroupName: Enter ‘eks-demo-node’ for your node group.
-
+![](https://res.cloudinary.com/dljvrtsnk/image/upload/v1714390327/gnodiuipvzkpqzouevex.png)
    - NodeImageIdSSMParam: Pre-populated with the Amazon EC2 Systems Manager parameter of a recent Amazon EKS optimized AMI for a variable Kubernetes version. If you want to use version 1.29, you can update the field to /aws/service/eks/optimized-ami/1.29/amazon-linux-2/recommended/image_id
-
-   - KeyName: Select the name of an Amazon EC2 SSH key pair that you can use to connect using SSH into your nodes after they launch.
-
-   - VpcId: Select the VPC as same as EKS cluster
-
-   - Subnets: Select the subnets as same as EKS cluster
+   
+   - - Subnets: Select the subnets as same as EKS cluster
 
    Choose one of these instance types: .nano, micro, .small, .medium of t1,t2, and t3 instance class.
 
@@ -76,20 +73,33 @@ To make it simple, you can follow the steps below. For more information please r
 
    The maximum disk size per node allowed is 10GB.
 
+![](https://res.cloudinary.com/dljvrtsnk/image/upload/v1714390378/qyztzkqpqvocpsygpdhr.png)
+   - KeyName: Select the name of an Amazon EC2 SSH key pair that you can use to connect using SSH into your nodes after they launch.
+
+   - VpcId: Select the VPC as same as EKS cluster
+![](https://res.cloudinary.com/dljvrtsnk/image/upload/v1714390498/czwwukryhhldloe9ft5u.png)
+
 4. Select your desired choices on the Configure stack options page, and then choose Next
 
 5. As on the box below, stick “I acknowledge that AWS CloudFormation might create IAM resources”, and then choose Submit.
-
+![](https://res.cloudinary.com/dljvrtsnk/image/upload/v1714390534/y4kkpyqi8xpf6wzg3mny.png)
 6. When your stack has finished creating, select it in the console and choose Outputs. Record the NodeInstanceRole for the node group that was created. You need this when you configure your Amazon EKS nodes.
+![](https://res.cloudinary.com/dljvrtsnk/image/upload/v1714390570/y5p56imorc7rh5pn0usa.png)
 
 ## Step 4: Joining the worker nodes
 
 Execute the following commands in the terminal.
 
-First, you need to download the configuration map by executing the following command
+First, you need to download the configuration map by executing the following command. Then, in the aws-auth-cm.yaml file, update the value of rolearn key to NodeInstanceRole value which is created above.
 
+```
+curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/cloudformation/2020-10-29/aws-auth-cm.yaml
+```
+![](https://res.cloudinary.com/dljvrtsnk/image/upload/v1714390657/paszwq3ge2f8phkzzpiy.png)
+
+Next, apply the configuration. This command may take a few minutes to finish.
 ```bash
 kubectl apply -f aws-auth-cm.yaml
 ```
-
+![](https://res.cloudinary.com/dljvrtsnk/image/upload/v1714390731/cs5oxd2pvg3yaehqsj7h.png)
 By successfully creating an EKS cluster in KodeKloud Playground, you not only gain valuable experience but also build confidence in working with real-world Kubernetes environments. So, start creating your EKS cluster today and practice your Kubernetes skills. With each step, you’ll build confidence, expand your knowledge, and strengthen your skills in EKS and Kubernetes.
