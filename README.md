@@ -15,37 +15,31 @@ KodeKloud is an interactive learning platform that offers hands-on experience wi
 ![](https://res.cloudinary.com/dljvrtsnk/image/upload/v1714389164/qnmfarvvje6f9ab24zfz.png)
 - Access to Console link and using provided credentials.
 ![](https://res.cloudinary.com/dljvrtsnk/image/upload/v1714389234/ywggrnull0swswqgvpzc.png)
-## Step 2: Creating an EKS Cluster
-To simplify, follow the steps below. For more information, please refer to the [AWS EKS User Guide](https://docs.aws.amazon.com/eks/latest/userguide/create-cluster.html).
-
-1. **Create Cluster Service Role**:
-   - Open the IAM console at [AWS IAM Console](https://console.aws.amazon.com/iam/).
-   - Click on 'Roles', select 'Create role', choose 'AWS service' as the trusted entity type, select 'EKS' from the dropdown, and pick 'EKS - Cluster'.
-   - Click 'Next' and proceed without adding any additional permissions. Assign 'eksClusterRole' to your role and click on 'Create role'.
 
 ## Step 2: Creating cluster EKS
 
 To make it simple, you can follow the steps below. For more information please refer to [AWS EKS Documentation](https://docs.aws.amazon.com/eks/latest/userguide/create-cluster.html).
 
 1. Before creating an Amazon EKS cluster, you need to create the Cluster service role. To create a new IAM role for EKS in AWS, start by opening the IAM console at [IAM Console](https://console.aws.amazon.com/iam/). Then, click on ‘Roles’ and select ‘Create role’. Under ‘Trusted entity type’, choose ‘AWS service’. In the ‘Use cases for other AWS services’ dropdown, select ‘EKS’ and then pick ‘EKS - Cluster’.
-
+![](https://res.cloudinary.com/dljvrtsnk/image/upload/v1714389488/qdjzivrguhxmlpvomptv.png)
    Click ‘Next’ and proceed without adding any additional permissions in the ‘Add permissions’ tab. Next, assign ‘eksClusterRole’ to your role. Finally, click on ‘Create role’ to complete the process.
-
+![](https://res.cloudinary.com/dljvrtsnk/image/upload/v1714389542/d0vb1cglwangn9lusr5f.png)
 2. Open the Amazon EKS console at [EKS Console](https://console.aws.amazon.com/eks/home#/clusters) Choose Create cluster.
-
+![](https://res.cloudinary.com/dljvrtsnk/image/upload/v1714389755/yvspivykxbom8atrwgto.png)
 3. On the Configure cluster page, enter a name for your cluster, and choose the Kubernetes version. You can also select other options as per your requirements.
-
-4. On the Specify networking page, select values for the Subnets fields - You must select at least two values (Do not select the subnet from the us-east-1e availability zone). In this tutorial, subnets from us-east-1a, us-east-1b, us-east-1c availability zones are selected. Choose Next.
-
-5. On the Configure cluster security group page, you can either choose an existing security group or create a new one. Ensure that the security group allows inbound and outbound traffic on the required ports for your applications. Choose Next.
+![](https://res.cloudinary.com/dljvrtsnk/image/upload/v1714389803/qvmcgexaprki14alxlhe.png)
+4. On the Specify networking page, select values for the Subnets fields - You must select at least two values (Do not select the subnet from the us-east-1e availability zone). In this tutorial, subnets from us-east-1a, us-east-1b, us-east-1c availability zones are selected. Choose an existing security group or create a new one. Ensure that the security group allows inbound and outbound traffic on the required ports for your applications. Choose Next..
+![](https://res.cloudinary.com/dljvrtsnk/image/upload/v1714389834/p2zljgzyaclkop25r744.png)
+5. On the Configure logging and Select add-ons page, you can optionally choose which you want and then select Next.
 
 6. On the Review and Create page, review the information that you entered or selected on the previous pages. If you need to make changes, choose Edit. After that, choose Create. The Status field shows CREATING while the cluster is provisioned.
-
+![](https://res.cloudinary.com/dljvrtsnk/image/upload/v1714389943/mkoqybyb1s9rvb2iww9a.png)
 7. Once the cluster is created, enable kubectl to communicate with your cluster by adding a new context to the kubectl config file by executing the following command in Terminal.
 
 ```bash
    $ aws eks update-kubeconfig --name <cluster-name>
 ```
+![](https://res.cloudinary.com/dljvrtsnk/image/upload/v1714390063/xmfnqqxr1jbffwg2n9cj.png)
 ## Step 3: Computing self-managed nodes
 
 To make it simple, you can follow the steps below. For more information please refer to [AWS EKS Documentation](https://docs.aws.amazon.com/eks/latest/userguide/launch-workers.html)
