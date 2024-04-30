@@ -34,11 +34,11 @@ To make it simple, you can follow the steps below. For more information please r
 
 6. On the Review and Create page, review the information that you entered or selected on the previous pages. If you need to make changes, choose Edit. After that, choose Create. The Status field shows CREATING while the cluster is provisioned.
 ![](https://res.cloudinary.com/dljvrtsnk/image/upload/v1714389943/mkoqybyb1s9rvb2iww9a.png)
-7. Once the cluster is created, enable kubectl to communicate with your cluster by adding a new context to the kubectl config file by executing the following command in Terminal. 
-    ```
-     $ aws eks update-kubeconfig --name <cluster-name>
-    ```
-    ![](https://res.cloudinary.com/dljvrtsnk/image/upload/v1714390063/xmfnqqxr1jbffwg2n9cj.png)
+7. Once the cluster is created, enable kubectl to communicate with your cluster by adding a new context to the kubectl config file by executing the following command in Terminal.
+   ```bash
+   $ aws eks update-kubeconfig --name <cluster-name>
+   ```
+   ![](https://res.cloudinary.com/dljvrtsnk/image/upload/v1714390063/xmfnqqxr1jbffwg2n9cj.png)
 ## Step 3: Computing self-managed nodes
 
 To make it simple, you can follow the steps below. For more information please refer to [AWS EKS Documentation](https://docs.aws.amazon.com/eks/latest/userguide/launch-workers.html)
@@ -48,7 +48,7 @@ To make it simple, you can follow the steps below. For more information please r
 1. Open the AWS CloudFormation console at [CloudFormation Console](https://console.aws.amazon.com/cloudformation). Choose Create stack and then select With new resources (standard).
 ![](https://res.cloudinary.com/dljvrtsnk/image/upload/v1714390143/xghwm2z0oqopyhdpczfv.png)
 2. Use the template ready option. Select the Amazon S3 Url as the template source and add the following file location URL in the Amazon S3 Url. Choose Next.
-[amazon-eks-nodegroup.yaml](https://s3.us-west-2.amazonaws.com/amazon-eks/cloudformation/2022-12-23/amazon-eks-nodegroup.yaml)
+   https://s3.us-west-2.amazonaws.com/amazon-eks/cloudformation/2022-12-23/amazon-eks-nodegroup.yaml
 ![](https://res.cloudinary.com/dljvrtsnk/image/upload/v1714390176/azqnrdckq9rrtqcnx55z.png)
 3. On the Specify stack details page, enter the following parameters accordingly, and then choose Next:
 
@@ -62,9 +62,9 @@ To make it simple, you can follow the steps below. For more information please r
 ![](https://res.cloudinary.com/dljvrtsnk/image/upload/v1714390327/gnodiuipvzkpqzouevex.png)
    - NodeImageIdSSMParam: Pre-populated with the Amazon EC2 Systems Manager parameter of a recent Amazon EKS optimized AMI for a variable Kubernetes version. If you want to use version 1.29, you can update the field to /aws/service/eks/optimized-ami/1.29/amazon-linux-2/recommended/image_id
    
-   - Subnets: Select the subnets as same as EKS cluster
+   -  Subnets: Select the subnets as same as EKS cluster
 
-    - Choose one of these instance types: .nano, micro, .small, .medium of t1,t2, and t3 instance class.
+   - Choose one of these instance types: .nano, micro, .small, .medium of t1,t2, and t3 instance class.
 
    - Choose the disk type as “gp2” only.
 
