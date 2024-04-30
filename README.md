@@ -20,15 +20,15 @@ KodeKloud is an interactive learning platform that offers hands-on experience wi
 
 To make it simple, you can follow the steps below. For more information please refer to [AWS EKS Documentation](https://docs.aws.amazon.com/eks/latest/userguide/create-cluster.html).
 
-1. Before creating an Amazon EKS cluster, you need to create the Cluster service role. To create a new IAM role for EKS in AWS, start by opening the IAM console at [IAM Console](https://console.aws.amazon.com/iam/). Then, click on ‘Roles’ and select ‘Create role’. Under ‘Trusted entity type’, choose ‘AWS service’. In the ‘Use cases for other AWS services’ dropdown, select ‘EKS’ and then pick ‘EKS - Cluster’.
+1. Before creating an Amazon EKS cluster, you need to create the Cluster service role. To create a new IAM role for EKS in AWS, start by opening the IAM console at [IAM Console](https://console.aws.amazon.com/iam/). Then, click on 'Roles' and select 'Create role'. Under 'Trusted entity type', choose 'AWS service'. In the 'Use cases for other AWS services' dropdown, select 'EKS' and then pick 'EKS - Cluster'.
 ![](https://res.cloudinary.com/dljvrtsnk/image/upload/v1714389488/qdjzivrguhxmlpvomptv.png)
-   Click ‘Next’ and proceed without adding any additional permissions in the ‘Add permissions’ tab. Next, assign ‘eksClusterRole’ to your role. Finally, click on ‘Create role’ to complete the process.
+   Click ‘Next’ and proceed without adding any additional permissions in the ‘Add permissions’ tab. Next, assign **eksClusterRole** to your role. Finally, click on ‘Create role’ to complete the process.
 ![](https://res.cloudinary.com/dljvrtsnk/image/upload/v1714389542/d0vb1cglwangn9lusr5f.png)
 2. Open the Amazon EKS console at [EKS Console](https://console.aws.amazon.com/eks/home#/clusters) Choose Create cluster.
 ![](https://res.cloudinary.com/dljvrtsnk/image/upload/v1714389755/yvspivykxbom8atrwgto.png)
-3. On the Configure cluster page, enter a name for your cluster, and choose the Kubernetes version. You can also select other options as per your requirements.
+3. On the Configure cluster page, Enter **demo-eks** as the name for your cluster, and choose the Kubernetes 1.29 version. You can also select other options as per your requirements.
 ![](https://res.cloudinary.com/dljvrtsnk/image/upload/v1714389803/qvmcgexaprki14alxlhe.png)
-4. On the Specify networking page, select values for the Subnets fields - You must select at least two values (Do not select the subnet from the us-east-1e availability zone). In this tutorial, subnets from us-east-1a, us-east-1b, us-east-1c availability zones are selected. Choose an existing security group or create a new one. Ensure that the security group allows inbound and outbound traffic on the required ports for your applications. Choose Next..
+4. On the Specify networking page, select values for the Subnets fields - You must select at least two values (Do not select the subnet from the us-east-1e availability zone). In this tutorial, subnets from **us-east-1a, us-east-1b, us-east-1c** availability zones are selected. Choose an existing security group or create a new one. Ensure that the security group allows inbound and outbound traffic on the required ports for your applications. Choose Next..
 ![](https://res.cloudinary.com/dljvrtsnk/image/upload/v1714389834/p2zljgzyaclkop25r744.png)
 5. On the Configure logging and Select add-ons page, you can optionally choose which you want and then select Next.
 
@@ -52,13 +52,13 @@ To make it simple, you can follow the steps below. For more information please r
 ![](https://res.cloudinary.com/dljvrtsnk/image/upload/v1714390176/azqnrdckq9rrtqcnx55z.png)
 3. On the Specify stack details page, enter the following parameters accordingly, and then choose Next:
 
-   - Stack name: Enter ‘eks-cluster-stack’ for your AWS CloudFormation stack.
+   - Stack name: Enter **eks-cluster-stack** for your AWS CloudFormation stack.
 
-   - ClusterName: Enter ‘demo-eks’ as name that you used when you created your Amazon EKS cluster. This name must be the same as the cluster name or your nodes can’t join the cluster.
+   - ClusterName: Enter **demo-eks** as name that you used when you created your Amazon EKS cluster. This name must be the same as the cluster name or your nodes can’t join the cluster.
 
    - ClusterControlPlaneSecurityGroup: Choose the security group of the cluster control plane.
 
-   - NodeGroupName: Enter ‘eks-demo-node’ for your node group.
+   - NodeGroupName: Enter **eks-demo-node** for your node group.
 ![](https://res.cloudinary.com/dljvrtsnk/image/upload/v1714390327/gnodiuipvzkpqzouevex.png)
    - NodeImageIdSSMParam: Pre-populated with the Amazon EC2 Systems Manager parameter of a recent Amazon EKS optimized AMI for a variable Kubernetes version. If you want to use version 1.29, you can update the field to /aws/service/eks/optimized-ami/1.29/amazon-linux-2/recommended/image_id
    
